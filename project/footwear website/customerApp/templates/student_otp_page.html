@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+		
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="{% url 'home' %}">Home</a></span> / <span>Contact</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="colorlib-contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3>Email Verification</h3>
+						<div class="row contact-info-wrap">
+							<div class="col-md-3">
+								<p><span><i class="icon-location"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="contact-wrap">
+							<h3>verify OTP </h3>
+							<form method="POST" action="#" class="contact-form">
+								{% csrf_token %}
+								<div class="row">
+									
+									{% if Email_id %}
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="email">Your Email</label>
+											<input type="email" id="email" name="email" class="form-control" placeholder="Your email" value="{{email}}">
+										</div>
+									</div>
+									{% endif %}
+									
+									<!-- <div class="row"> -->
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="OTP">Your Secret OTP</label>
+												<input type="text" id="OTP" name="OTP" class="form-control" placeholder="Your secret OTP">
+											</div>
+										</div>						
+											
+									{% if msg_s %}
+									<div class="col-sm-12">
+										<p style="color: green;">{{msg_s}}</p>
+									</div>
+									{% endif %}
+
+									{% if msg_d %}
+									<div class="col-sm-12">
+										<p style="color: red;">{{msg_d}}</p>
+									{% endif %}
+
+									</div>
+									<div class="w-100"></div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input type="submit" value="verify OTP" class="btn btn-primary">
+										</div>
+									</div>
+								</div>
+							</form>		
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div id="map" class="{colorlib-map}"></div>		
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+		
+		<div class="breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="bread"><span><a href="index.html">Home</a></span> / <span>Contact</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="colorlib-contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<h3>sign up</h3>
+						<div class="row contact-info-wrap">
+							<div class="col-md-3">
+								<p><span><i class="icon-location"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-paperplane"></i></span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-globe"></i></span> <a href="#">yoursite.com</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="contact-wrap">
+							<h3>sign up here..</h3>
+							<form method="POST" action="{% url 'signup' %}" class="contact-form">
+								{% csrf_token %}
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="fname">First Name</label>
+											<input type="text" id="fname" name="fname" class="form-control" placeholder="Your firstname">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="lname">Last Name</label>
+											<input type="text" id="lname" name="lname" class="form-control" placeholder="Your lastname">
+										</div>
+									</div>
+									{% if Email_id %}
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="email">Email</label>
+											<input type="text" id="email" name="email" class="form-control" placeholder="Your email address">
+										</div>
+									</div>
+									{% else %}
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="email">Email</label>
+											<input type="text" id="email" name="email" class="form-control" placeholder="Your email address">
+										</div>
+									</div>
+									{% endif %}
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="phone">phone</label>
+											<input type="text" id="phone" name="phone" class="form-control" placeholder="phone">
+										</div>
+									</div>
+									<div class="w-100"></div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label for="Address">Address</label>
+											<textarea name="address" id="Address" cols="30" rows="10" class="form-control" placeholder="Address">Address</textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="fname">Password</label>
+												<input type="password" id="password" name="password" class="form-control" placeholder="Your Password">
+											</div>
+										</div>						
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="fname">Confirm Password</label>
+													<input type="password" id="password" name="c_password" class="form-control" placeholder="Confirm Password">
+												</div>
+									{% if msg_s %}
+									<div class="col-sm-12">
+										<p style="color: green;">{{msg_s}}</p>
+									</div>
+									{% endif %}
+
+									{% if msg_d %}
+									<div class="col-sm-12">
+										<p style="color: red;">{{msg_d}}</p>
+									{% endif %}
+
+									</div>
+									<div class="w-100"></div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<input type="submit" value="Sign Up" class="btn btn-primary">
+										</div>
+									</div>
+								</div>
+							</form>		
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div id="map" class="{colorlib-map}"></div>		
+					</div>
+				</div>
+			</div>
+		</div>
+
+{% endblock content %}
