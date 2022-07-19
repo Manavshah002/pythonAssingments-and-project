@@ -1,0 +1,216 @@
+﻿{% extends 'myapps/mem_index.html' %}
+{% block content %}
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>Profile <small class="text-muted">Welcome to Digital Society</small></h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+
+                <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10"
+                    type="button">
+                    <i class="zmdi zmdi-edit"></i>
+                </button>
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Digital
+                            Society</a></li>
+                    <li class="breadcrumb-item"></li>
+
+                    <li class="breadcrumb-item active">Profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row clearfix profile-page">
+            <div class="col-lg-4 col-md-12">
+                <div class="card profile-header">
+                    <div class="body text-center">
+                        <div class="profile-image"> <img src="{{m_id.m_pic.url}}" alt=""> </div>
+                        <div>
+                            <h4 class="m-b-0"><strong>{{m_id.m_f_name}}</strong></h4>
+                            <span class="job_post">{{u_id.role}}</span>
+                            <h7><b>About</b></h7>
+                            <p>{{m_id.m_about_me}}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary btn-round btn-simple">Raise a issue</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="card">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Account">Account</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane body active" id="about">
+                            <p>About Member</p>
+
+                            <p>{{m_id.m_about_me}}</p>
+                        </div>
+
+
+                        <div class="tab-pane body" id="Account">
+                            {% if smsg %}
+                            <div class="alert alert-success" role="alert">
+                                {{smsg}}
+                            </div>
+                            {% endif %}
+                            {% if emsg %}
+                            <div class="alert alert-danger" role="alert">
+                                {{emsg}}
+                            </div>
+                            {% endif %}
+                            <form action="#" method="POST">{% csrf_token %}
+
+                                <div class="form-group">
+                                    <input type="Email" class="form-control" name="email" placeholder="Email"
+                                        value="{{ u_id.email }}" readonly>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Current Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" name="newpassword"
+                                                placeholder="New Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" name="cpassword"
+                                                placeholder="Confirm Password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="Submit" class="btn btn-info btn-round" value="Save Changes">
+                            </form>
+                            <hr>
+                            <form method="post" action="{% url 'mem_profile' %}" enctype = "multipart/form-data">
+                                {% csrf_token %}
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="First Name" name="f_name" value="{{m_id.m_f_name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Last Name" name="l_name" value="{{m_id.m_l_name}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" placeholder="Date of Birth" name="dob" value="{{m_id.dob}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Gender" name="gender" value="{{m_id.gender}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Vehicle" name="vehicle" value="{{m_id.vehicle}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="work" name="work" value="{{m_id.work}}">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Block NO" name="block_no" value="{{m_id.m_block_no}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="House No" name="house_no" value="{{m_id.m_house_no}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Family Member" name="family_member" value="{{m_id.family_member}}">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" placeholder="Profile Pic" name="pic">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Phone" name="contact" value="{{m_id.contact_no}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <textarea rows="4" class="form-control no-resize"
+                                                placeholder="About Yourself..." name="about_me">{{m_id.m_about_me}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                                        <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                                   {% if s_msg %}
+                                    <div class="alert alert-success" role="alert">
+                                        {{s_msg}}
+                                    </div>
+                                    {% endif %}
+
+
+                                    {% if e_msg %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{e_msg}}
+                                    </div>
+                                    {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <!-- <div class="body user_activity">
+                    <div class="streamline b-accent">
+                        
+                        </div> -->
+                <div class="sl-item">
+                    <img class="user rounded-circle" src="..\assets\images\xs\avatar7.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+</section>
+{% endblock %}

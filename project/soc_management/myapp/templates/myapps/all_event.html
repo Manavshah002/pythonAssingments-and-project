@@ -1,0 +1,50 @@
+{% extends "myapps/index.html" %}
+{% block content %}
+    <section class="content home">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-12">
+                    <h2>All Notice <small class="text-muted">Welcome to Digital</small></h2>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                    <ul class="breadcrumb float-md-right">
+                        <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i>
+                                Digital</a></li>
+                        <li class="breadcrumb-item">Event</li>
+                        <li class="breadcrumb-item active">Blog Grid</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="blog-page">
+                <div class="row">
+                    {% for i in e_id %}
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card single_post">
+                            <div class="body">
+                                <h3 class="m-t-0 m-b-5"><a href="{% url 'all_event' %}"></a></h3>
+                                <ul class="meta">
+                                    <li><a href="#"><i class="zmdi zmdi-account col-blue"></i>posted by : {{i.user_id.firstname}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-label col-lime"></i>{{i.whenpublished}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-comment-text col-blue"></i>View : 3</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-comment-text col-blue"></i>Date:{{i.e_date}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-comment-text col-blue"></i>venue:{{i.e_venue}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div class="img-post m-b-15">
+                                    <img src="{{i.e_pic.url}}" alt="Awesome Image">
+                                </div>
+                                <!-- <a href="detail.html" title="read more" class="btn btn-round btn-info">Read More</a> -->
+                            </div>
+                            <div class="media-body">
+                                <span class="zmdi zmdi-comment-text col-blue">{{i.e_content}}</span>
+                            </div>
+                        </div>
+                    </div>
+                        {% endfor %}
+                </div>
+            </div>
+    </section>
+{% endblock content %}
